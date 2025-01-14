@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="game-title mt-3">
+    <h1 class="text-center">Pokémon Game</h1>
+  </div>
+  <div class="container">
+    <div *ngIf="isLoading" class="loader-container">
+      <div class="spinner-border text-primary loader" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <div *ngIf="!isLoading" class="text-center mt-3">
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <div class="score-board">
+            <h1>Your Score is :</h1>
+            <h3>{{score}}</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-lg-6">
+          <div class="row justify-content-center">
+            <div class="col-12 col-md-6">
+              <h3>Guess the Pokémon?</h3>
+              <div class="pokemon-image">
+                <img [src]="randomPokemon.sprites.other.home.front_default" alt="{{ randomPokemon.name }}"
+                  class="img-fluid rounded">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <h3>Choose the Correct Name:</h3>
+          <div class="btn-group-vertical w-100">
+            <button *ngFor="let option of pokemonNameOptions" (click)="selectedPokemonName(option)"
+              class="btn btn-outline-primary btn-lg w-100 mb-2">
+              {{ option }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="correctNameFlag" class="w-100">
+        <button type="button" class="btn w-100" style="font-weight: bold;" [ngClass]="{
+          'btn-success': correctNameFlag === 'Correct',
+          'btn-danger': correctNameFlag === 'InCorrect'
+        }">
+          <h2>{{correctNameFlag}}</h2>
+        </button>
+      </div>
+
+
+    </div>
+  </div>
+</div>
