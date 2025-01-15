@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { PokemonService } from './Core/pokemon.service';
+import { PopupComponent } from './popup/popup.component';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +8,14 @@ import { PokemonService } from './Core/pokemon.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'pokemon-app';
+
+  @ViewChild('popup') popup!: PopupComponent;
 
   randomPokemon: any = null;
   pokemonList: Array<any> = [];
   pokemonNameOptions: Array<string> = [];
   isLoading: boolean = false;
-  correctNameFlag: string;
+  correctNameFlag: string = 'some value';
   score: number = 0;
 
   constructor(private pokemonService: PokemonService) { }
@@ -62,11 +64,14 @@ export class AppComponent {
   selectedPokemonName(name) {
     if (name == this.randomPokemon.name) {
       this.score += 50;
-      this.correctNameFlag = "Correct"
+      // this.correctNameFlag = "Correct"
+      this.popup.correctNameFlag = "Correct"
     } else {
       this.score -= 50;
-      this.correctNameFlag = "InCorrect"
+      // this.correctNameFlag = "InCorrect"
+      this.popup.correctNameFlag = "InCorrect";
     }
+    this.popup.showAndHidePopup();
     setTimeout(() => {
       this.isLoading = true;
       this.showRandomPokemon();

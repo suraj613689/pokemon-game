@@ -42,17 +42,10 @@
           </div>
         </div>
       </div>
-
-      <div *ngIf="correctNameFlag" class="w-100">
-        <button type="button" class="btn w-100" style="font-weight: bold;" [ngClass]="{
-          'btn-success': correctNameFlag === 'Correct',
-          'btn-danger': correctNameFlag === 'InCorrect'
-        }">
-          <h2>{{correctNameFlag}}</h2>
-        </button>
-      </div>
-
-
     </div>
   </div>
+</div>
+
+<div class="popup">
+  <app-popup #popup></app-popup>
 </div>

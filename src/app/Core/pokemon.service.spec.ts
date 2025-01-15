@@ -4,7 +4,7 @@ import { PokemonService } from './pokemon.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 
-describe('PokemonService - Data Assignment', () => {
+describe('PokemonService', () => {
   let service: PokemonService;
   let httpMock: HttpTestingController;
   let fetchedData: any;
